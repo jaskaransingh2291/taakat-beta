@@ -3,7 +3,7 @@
   'use strict';
 
   var $ = function (id) { return document.getElementById(id); };
-  var APP_VERSION = '4.2.0';          // must match version.json (checked by the tests)
+  var APP_VERSION = '4.3.0';          // must match version.json (checked by the tests)
   var REQUEST_TIMEOUT_MS = 15000;
   var RESET_COOLDOWN_S = 60;
   // Nightglow (4.0): one look for everyone, mint accent set in styles.css. Colour picker removed (Jas, Oct 7).

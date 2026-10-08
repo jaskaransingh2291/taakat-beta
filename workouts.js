@@ -288,12 +288,18 @@
       var t = summarise(exBy[r.id] || [], u);
       var li = el('li');
       var b = el('button', 'wo-item'); b.type = 'button';
+      // Date badge (Tue / 6), then the day's name and what was done
+      var dt = new Date(String(r.session_date) + 'T12:00:00Z');
+      var badge = el('span', 'wo-date'); badge.setAttribute('aria-hidden', 'true');
+      badge.appendChild(el('span', 'wo-date-d', ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][dt.getUTCDay()] || ''));
+      badge.appendChild(el('span', 'wo-date-n', String(dt.getUTCDate() || '')));
+      b.appendChild(badge);
       var left = el('span', 'entry-text');
-      left.appendChild(el('span', 'entry-name', dayText(r.session_date) + (r.split_day ? ' · ' + r.split_day : '')));
+      left.appendChild(el('span', 'entry-name', r.split_day || 'Workout'));
       var bits = [t.exercises + (t.exercises === 1 ? ' exercise' : ' exercises'), t.sets + (t.sets === 1 ? ' set' : ' sets')];
       var mins = minutesBetween(r.started_at, r.finished_at);
       if (mins) bits.push(mins + ' min');
-      left.appendChild(el('span', 'entry-meta', bits.join(' · ')));
+      left.appendChild(el('span', 'entry-meta', dayText(r.session_date) + ' · ' + bits.join(' · ')));
       if (!r.finished_at) left.appendChild(el('span', 'wk-flag', 'Not finished'));
       b.appendChild(left);
       var right = el('span', 'wo-vol');
