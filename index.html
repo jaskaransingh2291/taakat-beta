@@ -19,20 +19,20 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&amp;family=Noto+Sans+Gurmukhi:wght@600&amp;display=swap">
-<link rel="stylesheet" href="styles.css?v=4.1.0">
-<script src="vendor/supabase.js?v=4.1.0" defer></script>
-<script src="config.js?v=4.1.0" defer></script>
-<script src="calc.js?v=4.1.0" defer></script>
-<script src="meals.js?v=4.1.0" defer></script>
-<script src="workouts.js?v=4.1.0" defer></script>
-<script src="splits.js?v=4.1.0" defer></script>
-<script src="chart.js?v=4.1.0" defer></script>
-<script src="exinfo.js?v=4.1.0" defer></script>
-<script src="body.js?v=4.1.0" defer></script>
-<script src="data.js?v=4.1.0" defer></script>
-<script src="cover.js?v=4.1.0" defer></script>
-<script src="crew.js?v=4.1.0" defer></script>
-<script src="app.js?v=4.1.0" defer></script>
+<link rel="stylesheet" href="styles.css?v=4.2.0">
+<script src="vendor/supabase.js?v=4.2.0" defer></script>
+<script src="config.js?v=4.2.0" defer></script>
+<script src="calc.js?v=4.2.0" defer></script>
+<script src="meals.js?v=4.2.0" defer></script>
+<script src="workouts.js?v=4.2.0" defer></script>
+<script src="splits.js?v=4.2.0" defer></script>
+<script src="chart.js?v=4.2.0" defer></script>
+<script src="exinfo.js?v=4.2.0" defer></script>
+<script src="body.js?v=4.2.0" defer></script>
+<script src="data.js?v=4.2.0" defer></script>
+<script src="cover.js?v=4.2.0" defer></script>
+<script src="crew.js?v=4.2.0" defer></script>
+<script src="app.js?v=4.2.0" defer></script>
 </head>
 <body>
 <noscript><p class="noscript">Taakat needs JavaScript turned on in your browser.</p></noscript>
@@ -346,12 +346,12 @@
       <h2 id="af-title" class="card-title" tabindex="-1">Log food</h2>
     </div>
     <p class="for-day" id="af-day" hidden></p>
-    <fieldset class="inline-choices meal-chips" id="af-meals"><legend class="sr-only">Meal</legend>
+    <fieldset class="inline-choices meal-chips" id="af-meals"><legend class="sr-only">Meal</legend><div class="seg">
       <label class="pill"><input type="radio" name="af-meal" value="breakfast"><span>Breakfast</span></label>
       <label class="pill"><input type="radio" name="af-meal" value="lunch"><span>Lunch</span></label>
       <label class="pill"><input type="radio" name="af-meal" value="dinner"><span>Dinner</span></label>
       <label class="pill"><input type="radio" name="af-meal" value="snacks"><span>Snacks</span></label>
-    </fieldset>
+    </div></fieldset>
     <label for="af-search" class="sr-only">Search foods</label>
     <input id="af-search" class="search" type="search" placeholder="Search: chicken, naan, Big Mac…" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="search" maxlength="60">
     <fieldset class="inline-choices filter-chips" id="af-filters"><legend class="sr-only">Show</legend>
@@ -397,12 +397,12 @@
           <span><b id="pf-p">–</b> protein</span><span><b id="pf-c">–</b> carbs</span><span><b id="pf-f">–</b> fat</span><span><b id="pf-fib">–</b> fibre</span>
         </div>
       </div>
-      <fieldset class="inline-choices meal-chips"><legend class="field-legend">Meal</legend>
+      <fieldset class="inline-choices meal-chips"><legend class="field-legend">Meal</legend><div class="seg">
         <label class="pill"><input type="radio" name="pf-meal" value="breakfast"><span>Breakfast</span></label>
         <label class="pill"><input type="radio" name="pf-meal" value="lunch"><span>Lunch</span></label>
         <label class="pill"><input type="radio" name="pf-meal" value="dinner"><span>Dinner</span></label>
         <label class="pill"><input type="radio" name="pf-meal" value="snacks"><span>Snacks</span></label>
-      </fieldset>
+      </div></fieldset>
       <p id="pf-msg" class="msg" role="alert" hidden></p>
       <button type="submit" class="btn-primary fast-tap" id="pf-save">Add</button>
       <button type="button" class="btn-link danger-link" id="pf-delete" hidden>Delete this entry</button>
@@ -430,12 +430,12 @@
         <div><label for="cf-f">Fat</label><div class="num-row"><input id="cf-f" type="text" inputmode="decimal" maxlength="6" autocomplete="off"><span class="unit">g</span></div></div>
         <div><label for="cf-fib">Fibre</label><div class="num-row"><input id="cf-fib" type="text" inputmode="decimal" maxlength="6" autocomplete="off"><span class="unit">g</span></div></div>
       </div>
-      <fieldset class="inline-choices meal-chips"><legend class="field-legend">Meal</legend>
+      <fieldset class="inline-choices meal-chips"><legend class="field-legend">Meal</legend><div class="seg">
         <label class="pill"><input type="radio" name="cf-meal" value="breakfast"><span>Breakfast</span></label>
         <label class="pill"><input type="radio" name="cf-meal" value="lunch"><span>Lunch</span></label>
         <label class="pill"><input type="radio" name="cf-meal" value="dinner"><span>Dinner</span></label>
         <label class="pill"><input type="radio" name="cf-meal" value="snacks"><span>Snacks</span></label>
-      </fieldset>
+      </div></fieldset>
       <p id="cf-msg" class="msg" role="alert" hidden></p>
       <button type="submit" class="btn-primary fast-tap" id="cf-save">Add</button>
       <button type="button" class="btn-link danger-link" id="cf-delete" hidden>Delete this entry</button>
