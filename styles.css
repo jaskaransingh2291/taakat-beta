@@ -302,22 +302,37 @@ legend.step-q + * { clear: both; }
 .past-day .day-label b { color: var(--a); }
 .past-day .day-nav { border-color: rgba(var(--a-rgb), .35); }
 
-/* the big number */
-.gauge-wrap { margin: 28px 0 0; }
-.gauge { display: none; }
-.gauge-center { display: flex; flex-direction: column-reverse; align-items: center; text-align: center; }
-.gauge-number { max-width: 100%; font-size: clamp(64px, 22vw, 96px); font-weight: 300; line-height: 1; letter-spacing: -.04em; }
-.gauge-label { font-size: 14px; font-weight: 500; color: var(--muted); margin: 0 0 4px; }
-.kbar { position: relative; height: 6px; margin-top: 20px; border-radius: 3px; background: var(--rule-2); overflow: hidden; }
-.kbar-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 3px; background: var(--grad); box-shadow: 0 0 12px rgba(110, 231, 194, .55); transform-origin: left; transition: width .6s cubic-bezier(.3, .7, .2, 1); }
-.kbar-fill.over { background: var(--warn); box-shadow: 0 0 12px rgba(255, 194, 102, .45); }
-.gauge-sub { margin: 10px 0 0; color: var(--muted); font-size: 14px; font-weight: 400; text-align: center; }
+/* the arc gauge: kcal left */
+.gauge-wrap { position: relative; width: 100%; max-width: 300px; margin: 22px auto 0; }
+.gauge { display: block; width: 100%; height: auto; overflow: visible; }
+.gauge-track { fill: none; stroke: rgba(255, 255, 255, .08); stroke-width: 10; stroke-linecap: round; }
+.gauge-fill { fill: none; stroke: url(#gauge-grad); stroke-width: 10; stroke-linecap: round; stroke-dasharray: 0 377; filter: drop-shadow(0 0 9px rgba(110, 231, 194, .55)); transition: stroke-dasharray .7s cubic-bezier(.3, .7, .2, 1); }
+.gauge-fill.over { stroke: var(--warn); filter: drop-shadow(0 0 9px rgba(255, 194, 102, .45)); }
+.gauge-center { position: absolute; left: 0; right: 0; top: 29%; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.gauge-number { max-width: 100%; font-size: clamp(60px, 19vw, 76px); font-weight: 300; line-height: 1; letter-spacing: -.04em; }
+.gauge-label { font-size: 13px; font-weight: 400; color: var(--muted); margin: 0 0 2px; }
+.gauge-sub { margin: 4px 0 0; color: var(--muted); font-size: 13px; font-weight: 400; }
+.kbar { display: none; }
+#home-over { margin-top: 14px; }
 
-.day-card .stat-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 22px 0 0; }
-.day-card .stat { border: 1px solid var(--card-b); border-radius: 18px; background: var(--card); padding: 12px 14px; align-items: flex-start; }
-.day-card .protein { margin-top: 16px; padding: 16px 18px; border-radius: var(--r-card); background: var(--card); border: 1px solid var(--card-b); }
-.protein-head { display: flex; justify-content: space-between; align-items: baseline; }
-.protein-eaten { font-size: 20px; font-weight: 400; letter-spacing: -.01em; }
+/* three macro capsules, joined to the gauge by a thin bracket */
+.caps-bracket { width: 64%; height: 14px; margin: 16px auto 0; border: 1px solid rgba(255, 255, 255, .14); border-bottom: 0; border-radius: 10px 10px 0 0; }
+.caps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: -2px; }
+.cap { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; }
+.cap-v { display: inline-flex; align-items: center; justify-content: center; min-width: 76px; max-width: 100%; padding: 8px 12px; border-radius: 999px; border: 1.5px solid rgba(255, 255, 255, .18); font-size: 15px; font-weight: 500; white-space: nowrap; }
+.cap-main .cap-v { border-color: rgba(var(--a-rgb), .65); box-shadow: 0 0 14px rgba(var(--a-rgb), .12); }
+.cap-k { font-size: 12px; color: var(--muted); }
+.def-line { margin: 14px 0 0; text-align: center; font-size: 13px; color: var(--muted); }
+.def-line b { font-weight: 500; color: var(--muted-2); }
+.def-line small { font-size: 13px; margin-left: 3px; }
+
+/* protein card */
+.day-card .protein { margin-top: 18px; padding: 16px 18px; gap: 8px; border-radius: var(--r-card); background: var(--card); border: 1px solid var(--card-b); }
+.day-card .protein:empty { display: none; }
+.protein-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.protein-togo { font-size: 13px; font-weight: 500; color: var(--a); text-align: right; }
+.protein-eaten { margin: 0; font-size: 20px; font-weight: 400; letter-spacing: -.01em; }
+.protein-of { font-size: 14px; color: var(--muted); letter-spacing: 0; }
 .pbar { position: relative; height: 6px; margin: 10px 0 6px; border-radius: 3px; background: var(--rule-2); overflow: visible; }
 .pbar-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: var(--grad); box-shadow: 0 0 10px rgba(110, 231, 194, .45); transition: width .6s ease; }
 .pbar-mark { position: absolute; top: -4px; bottom: -4px; width: 2px; margin-left: -1px; border-radius: 1px; background: var(--text); opacity: .7; }
@@ -352,10 +367,29 @@ legend.step-q + * { clear: both; }
 .week-btn-text b { font-size: 16px; font-weight: 500; color: var(--text); }
 .week-btn-text small { font-size: 13px; color: var(--muted); font-weight: 400; }
 
-.add-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; display: flex; justify-content: center; pointer-events: none;
-  padding: 10px calc(env(safe-area-inset-right, 0px) + 20px) calc(env(safe-area-inset-bottom, 0px) + 16px) calc(env(safe-area-inset-left, 0px) + 20px); }
-.add-bar .btn-primary { pointer-events: auto; max-width: 420px; margin-top: 0; font-size: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, .5); }
-.view.home { padding-bottom: 84px; }
+/* Weight + Past 7 days: two small tiles */
+.tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tile { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; min-height: 132px; padding: 16px; border-radius: var(--r-card); border: 1px solid var(--card-b); background: var(--card); color: var(--text); text-align: left; min-width: 0; }
+.tile:focus-visible { outline: 2px solid var(--a); outline-offset: 2px; }
+.tile:active { background: rgba(255, 255, 255, .07); }
+.tile-k { font-size: 13px; color: var(--muted); }
+.tile-sub { font-size: 15px; font-weight: 500; line-height: 1.3; overflow-wrap: anywhere; }
+.tile-spark { display: block; width: 100%; max-width: 130px; }
+.tile-spark:empty { display: none; }
+.spark { display: block; width: 100%; height: auto; overflow: visible; }
+.spark path { fill: none; stroke: var(--a); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 4px rgba(110, 231, 194, .45)); }
+.tile-note { font-size: 12px; color: var(--muted-2); }
+.tile-note:empty { display: none; }
+.tile-go { margin-top: auto; font-size: 13px; font-weight: 500; color: var(--a); }
+
+/* Log food: a round + next to the tab bar (Today only) */
+.add-bar { position: fixed; z-index: 6; bottom: calc(env(safe-area-inset-bottom, 0px) + 19px); left: calc(50% - 23px + min(130px, (100vw - 106px) / 2)); }
+.fab { width: 60px; height: 60px; border-radius: 30px; border: none; background: var(--text); color: var(--on-light); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0, 0, 0, .5), 0 0 0 1px rgba(255, 255, 255, .08); transition: transform .1s ease; }
+.fab svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; }
+.fab:active { transform: scale(.94); }
+.fab:focus-visible { outline: 2px solid var(--a); outline-offset: 3px; }
+body.fab-on:not(.viewing) .tabbar { width: min(260px, calc(100% - 106px)); transform: translateX(calc(-50% - 33px)); }
+.view.home { padding-bottom: 24px; }
 
 /* Log food screens */
 .sheet-head { display: flex; align-items: center; gap: 8px; margin: 0 0 6px -6px; }
@@ -425,8 +459,7 @@ legend.step-q + * { clear: both; }
 .tab svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .tab[aria-current="page"] { color: var(--text); background: rgba(255, 255, 255, .10); }
 .tab:focus-visible { outline: 2px solid var(--a); outline-offset: 2px; }
-body.tabs-on .add-bar { bottom: calc(var(--tabbar-h) - 18px); padding-bottom: 12px; }
-body.tabs-on .view.home { padding-bottom: calc(84px + var(--tabbar-h)); }
+body.tabs-on .view.home { padding-bottom: calc(var(--tabbar-h) + 16px); }
 body.tabs-on .view.workouts { padding-bottom: calc(var(--tabbar-h) + 16px); }
 
 /* ===================== Training ===================== */
@@ -776,7 +809,6 @@ input.se-day-name { height: 48px; font-size: 17px; font-weight: 500; }
   background: rgba(var(--a-rgb), .10); border: 1px solid rgba(var(--a-rgb), .35); color: var(--a-soft); font-size: 14px; font-weight: 500; }
 .view-bar-back { color: var(--text); font-weight: 600; padding: 0 12px; }
 body.viewing .add-bar { display: none !important; }
-body.viewing.tabs-on .view.home { padding-bottom: calc(24px + var(--tabbar-h)); }
 .entry-ro { cursor: default; }
 .topbar-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .who-btn { flex-shrink: 1; min-width: 0; }

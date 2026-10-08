@@ -3,7 +3,7 @@
   'use strict';
 
   var $ = function (id) { return document.getElementById(id); };
-  var APP_VERSION = '4.0.0';          // must match version.json (checked by the tests)
+  var APP_VERSION = '4.1.0';          // must match version.json (checked by the tests)
   var REQUEST_TIMEOUT_MS = 15000;
   var RESET_COOLDOWN_S = 60;
   // Nightglow (4.0): one look for everyone, mint accent set in styles.css. Colour picker removed (Jas, Oct 7).
@@ -32,6 +32,7 @@
     $('tabbar').hidden = !tabs;
     $('to-profile').hidden = !tabs;
     document.body.classList.toggle('tabs-on', tabs);
+    document.body.classList.toggle('fab-on', name === 'home');   // round + (Log food) sits next to the tab bar on Today
     if (tabs) {
       $('tab-food').setAttribute('aria-current', name === 'home' ? 'page' : 'false');
       $('tab-workouts').setAttribute('aria-current', name === 'workouts' ? 'page' : 'false');

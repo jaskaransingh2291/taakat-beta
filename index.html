@@ -19,20 +19,20 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&amp;family=Noto+Sans+Gurmukhi:wght@600&amp;display=swap">
-<link rel="stylesheet" href="styles.css?v=4.0.0">
-<script src="vendor/supabase.js?v=4.0.0" defer></script>
-<script src="config.js?v=4.0.0" defer></script>
-<script src="calc.js?v=4.0.0" defer></script>
-<script src="meals.js?v=4.0.0" defer></script>
-<script src="workouts.js?v=4.0.0" defer></script>
-<script src="splits.js?v=4.0.0" defer></script>
-<script src="chart.js?v=4.0.0" defer></script>
-<script src="exinfo.js?v=4.0.0" defer></script>
-<script src="body.js?v=4.0.0" defer></script>
-<script src="data.js?v=4.0.0" defer></script>
-<script src="cover.js?v=4.0.0" defer></script>
-<script src="crew.js?v=4.0.0" defer></script>
-<script src="app.js?v=4.0.0" defer></script>
+<link rel="stylesheet" href="styles.css?v=4.1.0">
+<script src="vendor/supabase.js?v=4.1.0" defer></script>
+<script src="config.js?v=4.1.0" defer></script>
+<script src="calc.js?v=4.1.0" defer></script>
+<script src="meals.js?v=4.1.0" defer></script>
+<script src="workouts.js?v=4.1.0" defer></script>
+<script src="splits.js?v=4.1.0" defer></script>
+<script src="chart.js?v=4.1.0" defer></script>
+<script src="exinfo.js?v=4.1.0" defer></script>
+<script src="body.js?v=4.1.0" defer></script>
+<script src="data.js?v=4.1.0" defer></script>
+<script src="cover.js?v=4.1.0" defer></script>
+<script src="crew.js?v=4.1.0" defer></script>
+<script src="app.js?v=4.1.0" defer></script>
 </head>
 <body>
 <noscript><p class="noscript">Taakat needs JavaScript turned on in your browser.</p></noscript>
@@ -281,23 +281,25 @@
       <p class="muted small day-note" id="day-note" hidden></p>
       <p id="home-msg" class="msg" role="status" hidden></p>
       <div class="gauge-wrap">
-        <svg class="gauge" viewBox="0 0 220 124" aria-hidden="true" focusable="false">
-          <path class="gauge-track" d="M 20 112 A 90 90 0 0 1 200 112"></path>
-          <path class="gauge-fill" id="gauge-fill" d="M 20 112 A 90 90 0 0 1 200 112"></path>
+        <svg class="gauge" viewBox="0 0 300 168" aria-hidden="true" focusable="false">
+          <defs><linearGradient id="gauge-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2DB59E"></stop><stop offset="1" stop-color="#A6F7DE"></stop></linearGradient></defs>
+          <path class="gauge-track" d="M 30 150 A 120 120 0 0 1 270 150"></path>
+          <path class="gauge-fill" id="gauge-fill" d="M 30 150 A 120 120 0 0 1 270 150"></path>
         </svg>
         <div class="gauge-center">
-          <span class="gauge-number" id="home-left">–</span>
           <span class="gauge-label" id="home-left-label">kcal left</span>
+          <span class="gauge-number" id="home-left">–</span>
+          <p class="gauge-sub" id="home-eaten-line"></p>
         </div>
       </div>
-      <div class="kbar" aria-hidden="true"><div class="kbar-fill" id="home-bar"></div></div>
-      <p class="gauge-sub" id="home-eaten-line"></p>
       <p class="note-warn" id="home-over" hidden></p>
-      <div class="stat-grid">
-        <div class="stat"><span class="stat-label" id="home-def-label">Deficit so far</span><span class="stat-value" id="home-def">–</span></div>
-        <div class="stat"><span class="stat-label">Carbs</span><span class="stat-value" id="home-carbs">–</span></div>
-        <div class="stat"><span class="stat-label">Fat</span><span class="stat-value" id="home-fat">–</span></div>
+      <div class="caps-bracket" aria-hidden="true"></div>
+      <div class="caps">
+        <div class="cap cap-main"><span class="cap-v" id="home-prot">–</span><span class="cap-k">Protein</span></div>
+        <div class="cap"><span class="cap-v" id="home-carbs">–</span><span class="cap-k">Carbs</span></div>
+        <div class="cap"><span class="cap-v" id="home-fat">–</span><span class="cap-k">Fat</span></div>
       </div>
+      <p class="def-line"><span id="home-def-label">Deficit so far</span> <b id="home-def">–</b></p>
       <div class="protein" id="home-protein"></div>
     </div>
 
@@ -318,8 +320,10 @@
         <button type="button" class="btn-link" id="backup-later">Not now</button>
       </div>
     </div>
-    <button type="button" class="btn-secondary week-btn" id="to-weigh"><span class="week-btn-text"><b>Weight</b><small id="to-weigh-sub">Log your weight and see your trend</small></span><span aria-hidden="true">&#8250;</span></button>
-    <button type="button" class="btn-secondary week-btn" id="to-week"><span class="week-btn-text"><b>Past 7 days</b><small>How your weight is likely changing</small></span><span aria-hidden="true">&#8250;</span></button>
+    <div class="tiles">
+      <button type="button" class="tile" id="to-weigh"><span class="tile-k">Weight</span><span class="tile-sub" id="to-weigh-sub">Log your weight and see your trend</span><span class="tile-spark" id="to-weigh-spark" aria-hidden="true"></span><span class="tile-note" id="to-weigh-change"></span></button>
+      <button type="button" class="tile" id="to-week"><span class="tile-k">Past 7 days</span><span class="tile-sub">How your weight is likely changing</span><span class="tile-go" aria-hidden="true">See the estimate &#8250;</span></button>
+    </div>
 
     <div class="card numbers-card">
       <h2 class="card-title small-title" id="numbers-card-title">Your numbers</h2>
@@ -332,7 +336,7 @@
       <p class="muted small" id="home-diff"></p>
       <div id="home-notes"></div>
     </div>
-    <div class="add-bar"><button type="button" class="btn-primary" id="log-food">+ Log food</button></div>
+    <div class="add-bar"><button type="button" class="fab" id="log-food" aria-label="Log food"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg></button></div>
   </section>
 
   <!-- LOG FOOD: search -->
