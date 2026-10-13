@@ -3,7 +3,7 @@
   'use strict';
 
   var $ = function (id) { return document.getElementById(id); };
-  var APP_VERSION = '4.4.0';          // must match version.json (checked by the tests)
+  var APP_VERSION = '4.5.0';          // must match version.json (checked by the tests)
   var REQUEST_TIMEOUT_MS = 15000;
   var RESET_COOLDOWN_S = 60;
   // Nightglow (4.0): one look for everyone, mint accent set in styles.css. Colour picker removed (Jas, Oct 7).
@@ -783,6 +783,7 @@
   }) : null;
   var cover = (window.TaakatCover && C) ? window.TaakatCover({
     $: $, sb: sb, setMsg: setMsg, setBusy: setBusy, friendly: friendly,
+    focusQuiet: function (el) { focusQuiet(el); }, current: function () { return currentView; },
     me: function () { return me; }, profile: function () { return profile; },
     owner: function () { return viewing ? { id: viewing.id } : me; }, ownerProfile: function () { return viewing ? viewing.profile : profile; },
     ownerName: function () { return viewing ? viewing.name : null; }, viewOnly: function () { return !!viewing; },

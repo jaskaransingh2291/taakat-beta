@@ -19,20 +19,20 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&amp;family=Noto+Sans+Gurmukhi:wght@600&amp;display=swap">
-<link rel="stylesheet" href="styles.css?v=4.4.0">
-<script src="vendor/supabase.js?v=4.4.0" defer></script>
-<script src="config.js?v=4.4.0" defer></script>
-<script src="calc.js?v=4.4.0" defer></script>
-<script src="meals.js?v=4.4.0" defer></script>
-<script src="workouts.js?v=4.4.0" defer></script>
-<script src="splits.js?v=4.4.0" defer></script>
-<script src="chart.js?v=4.4.0" defer></script>
-<script src="exinfo.js?v=4.4.0" defer></script>
-<script src="body.js?v=4.4.0" defer></script>
-<script src="data.js?v=4.4.0" defer></script>
-<script src="cover.js?v=4.4.0" defer></script>
-<script src="crew.js?v=4.4.0" defer></script>
-<script src="app.js?v=4.4.0" defer></script>
+<link rel="stylesheet" href="styles.css?v=4.5.0">
+<script src="vendor/supabase.js?v=4.5.0" defer></script>
+<script src="config.js?v=4.5.0" defer></script>
+<script src="calc.js?v=4.5.0" defer></script>
+<script src="meals.js?v=4.5.0" defer></script>
+<script src="workouts.js?v=4.5.0" defer></script>
+<script src="splits.js?v=4.5.0" defer></script>
+<script src="chart.js?v=4.5.0" defer></script>
+<script src="exinfo.js?v=4.5.0" defer></script>
+<script src="body.js?v=4.5.0" defer></script>
+<script src="data.js?v=4.5.0" defer></script>
+<script src="cover.js?v=4.5.0" defer></script>
+<script src="crew.js?v=4.5.0" defer></script>
+<script src="app.js?v=4.5.0" defer></script>
 </head>
 <body>
 <noscript><p class="noscript">Taakat needs JavaScript turned on in your browser.</p></noscript>
@@ -892,5 +892,18 @@
     <span>Training</span>
   </button>
 </nav>
+
+<!-- COVER PHOTO: frame it (pinch to zoom, drag to move) before saving -->
+<div class="cvc" id="cv-crop" role="dialog" aria-modal="true" aria-labelledby="cvc-title" hidden>
+  <div class="cvc-panel">
+    <h2 class="cvc-title" id="cvc-title" tabindex="-1">Frame your photo</h2>
+    <p class="muted small cvc-hint">Pinch to zoom and drag to move. This is how it will sit behind the Training title.</p>
+    <div class="cvc-frame" id="cvc-frame"><img id="cvc-img" alt="Your photo, being framed" draggable="false"><div class="cvc-shade" aria-hidden="true"><span class="cvc-label">Training</span></div></div>
+    <div class="cvc-zoom"><span aria-hidden="true">&minus;</span><input type="range" id="cvc-zoom" min="1" max="4" step="0.01" value="1" aria-label="Zoom"><span aria-hidden="true">+</span></div>
+    <p id="cvc-msg" class="msg" role="alert" hidden></p>
+    <button type="button" class="btn-primary" id="cvc-use">Use this photo</button>
+    <button type="button" class="btn-link" id="cvc-cancel">Cancel</button>
+  </div>
+</div>
 </body>
 </html>
