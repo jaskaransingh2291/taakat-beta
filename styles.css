@@ -491,13 +491,25 @@ body.tabs-on .view.workouts { padding-bottom: calc(var(--tabbar-h) + 16px); }
 .wo-vol { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; font-weight: 400; font-size: 18px; line-height: 1.1; }
 .wo-vol small { font-size: 12px; color: var(--muted); font-weight: 400; margin-top: 2px; }
 
-.ws-head { padding-bottom: 6px; }
+.ws-head { position: relative; padding-bottom: 6px; }
+.ws-timer { position: absolute; top: 2px; right: 0; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(var(--a-rgb), .35); background: rgba(var(--a-rgb), .08); color: var(--a-soft); font-size: 15px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.ws-timer-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--a); box-shadow: 0 0 8px var(--a); animation: breathe 2s ease-in-out infinite; }
+@keyframes breathe { 50% { opacity: .35; } }
+.ws-prog { margin-top: 14px; }
+.ws-count { margin: 0; font-size: 13px; color: var(--muted); }
+.ws-segs { display: flex; gap: 4px; margin-top: 8px; }
+.ws-seg { flex: 1; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .10); }
+.ws-seg.done { background: var(--a); box-shadow: 0 0 8px rgba(var(--a-rgb), .5); }
+.ws-seg.part { background: linear-gradient(90deg, var(--a) 50%, rgba(255, 255, 255, .10) 50%); }
 .ws-head .card-title { margin: 10px 0 2px; font-size: 30px; }
 .ws-head .muted { margin: 0; }
 .ws-list { display: flex; flex-direction: column; gap: 14px; }
 .ws-none { margin: 0; }
 .ws-ex { padding: 16px 18px 8px !important; border-radius: var(--r-card); background: var(--card); border: 1px solid var(--card-b); animation: none; }
 .ws-ex-head { display: flex; align-items: flex-start; gap: 12px; }
+.ws-ex { transition: border-color .2s, box-shadow .2s; }
+.ws-ex.current { border-color: rgba(var(--a-rgb), .32); box-shadow: 0 0 40px rgba(110, 231, 194, .07); }
+.ws-ex.complete .ws-ex-head::before { content: "\2713"; flex-shrink: 0; width: 24px; height: 24px; margin-top: 10px; border-radius: 12px; background: rgba(var(--a-rgb), .16); color: var(--a); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
 .ws-ex-titles { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
 .ws-ex-name { margin: 0; font-size: 19px; font-weight: 500; line-height: 1.2; letter-spacing: -.01em; overflow-wrap: anywhere; }
 .ws-ex-meta { font-size: 13px; color: var(--muted); }
@@ -533,7 +545,9 @@ body.tabs-on .view.workouts { padding-bottom: calc(var(--tabbar-h) + 16px); }
 .xn-groups .pill span { padding: 0 14px; font-size: 15px; }
 .unit-chips .pill span { min-width: 72px; justify-content: center; }
 
-#wd-title { font-size: 34px; }
+#wd-title { font-size: 32px; text-align: center; }
+#view-wdone::before { content: "\2713"; display: flex; align-items: center; justify-content: center; width: 88px; height: 88px; margin: 18px auto 18px; border-radius: 50%; border: 1.5px solid rgba(166, 247, 222, .75); box-shadow: 0 0 26px rgba(110, 231, 194, .45), inset 0 0 22px rgba(110, 231, 194, .22); color: var(--a); font-size: 34px; }
+#wd-title + .muted { text-align: center; }
 .wd-stats { grid-template-columns: 1fr 1fr; gap: 8px; }
 .wd-stats .stat { border: 1px solid var(--card-b); border-radius: 18px; background: var(--card); padding: 12px 14px; }
 .wd-stats .stat-value { font-size: 32px; }
