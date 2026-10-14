@@ -711,6 +711,7 @@
     });
     $('ad-back').addEventListener('click', function () { api.show('addfood'); });
     $('ad-text').addEventListener('input', function () { api.setMsg('ad-msg', ''); });
+    $('ad-text').addEventListener('keydown', function (ev) { if (ev.key === 'Enter') { ev.preventDefault(); $('ad-text').blur(); $('ad-go').click(); } });
     $('ad-go').addEventListener('click', function () {
       if (adBusy) return;
       var t = $('ad-text').value.trim();
