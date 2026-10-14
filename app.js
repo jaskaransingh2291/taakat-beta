@@ -3,7 +3,7 @@
   'use strict';
 
   var $ = function (id) { return document.getElementById(id); };
-  var APP_VERSION = '4.6.3';          // must match version.json (checked by the tests)
+  var APP_VERSION = '4.6.4';          // must match version.json (checked by the tests)
   var REQUEST_TIMEOUT_MS = 15000;
   var RESET_COOLDOWN_S = 60;
   // Nightglow (4.0): one look for everyone, mint accent set in styles.css. Colour picker removed (Jas, Oct 7).
@@ -286,7 +286,7 @@
         window.location.replace(freshUrl(live));     // a new address can't come from the old saved copy
         return;
       }
-      $('update-banner').hidden = false;
+      $('update-notice').hidden = false;
       syncBanners();
     }).catch(function () { /* offline or blocked: try again later */ });
   }
@@ -1517,7 +1517,7 @@
 
   /* ---------- offline banner ---------- */
   function syncBanners() {
-    document.body.classList.toggle('has-banner', !$('offline').hidden || !$('update-banner').hidden);
+    document.body.classList.toggle('has-notice', !$('offline').hidden || !$('update-notice').hidden);
   }
   function updateOnline() { $('offline').hidden = navigator.onLine; syncBanners(); }
   window.addEventListener('online', updateOnline);
