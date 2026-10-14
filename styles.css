@@ -897,3 +897,29 @@ body.viewing .add-bar { display: none !important; }
 .signup-cta .muted { margin: 0; }
 #su-code { text-transform: uppercase; letter-spacing: .04em; }
 body.cvc-open .tabbar, body.cvc-open .add-bar { visibility: hidden; }
+
+/* ===================== AI: Describe it / Scan a label ===================== */
+.ai-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.ai-btn { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; padding: 0 12px; border-radius: 16px; border: 1px solid rgba(var(--a-rgb), .32); background: rgba(var(--a-rgb), .07); color: var(--a-soft); font-size: 15px; font-weight: 500; }
+.ai-btn:active:not(:disabled) { background: rgba(var(--a-rgb), .12); }
+.ai-btn:disabled { opacity: .7; }
+.ai-btn:focus-visible { outline: 2px solid var(--a); outline-offset: 2px; }
+.ai-btn.btn-busy .ai-spark, .ai-btn.btn-busy .ai-cam { display: none; }
+.ai-t { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ai-spark, .ai-cam { flex-shrink: 0; width: 18px; height: 18px; background-repeat: no-repeat; background-position: center; background-size: 18px 18px; }
+.ai-spark { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238EF0D0'%3E%3Cpath d='M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z'/%3E%3Cpath d='M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z' opacity='.7'/%3E%3C/svg%3E"); }
+.ai-cam { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238EF0D0' stroke-width='1.8' stroke-linejoin='round'%3E%3Cpath d='M4 8h3l2-2.5h6L17 8h3v11H4z'/%3E%3Ccircle cx='12' cy='13' r='3.5'/%3E%3C/svg%3E"); }
+#af-ai-msg { margin-top: 10px; }
+#view-aidescribe textarea { min-height: 96px; font-size: 17px; }
+.ad-out { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+.ad-out[hidden] { display: none; }
+.ad-h { margin: 0; font-size: 15px; font-weight: 500; color: var(--a-soft); }
+.ad-h .muted { margin: 0; font-weight: 400; font-size: 13px; }
+.ad-list { margin-bottom: 0; }
+.ad-item { gap: 10px; }
+.ad-item::after { content: none !important; }
+.ad-item .entry-kcal::after { content: "kcal"; font-size: 11px; color: var(--muted); }
+.ad-item .entry-kcal { display: flex; flex-direction: column; align-items: flex-end; line-height: 1.15; }
+.ad-rm { flex-shrink: 0; width: 44px; height: 44px; margin-right: -8px; border-radius: 22px; border: none; background: transparent; color: var(--muted); font-size: 22px; font-weight: 300; line-height: 1; }
+.ad-rm:focus-visible { outline: 2px solid var(--a); outline-offset: -2px; }
+.ad-total { margin: 0; font-size: 14px; color: var(--muted-2); }
