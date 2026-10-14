@@ -690,6 +690,7 @@
     /* ---------- AI: "Describe it" and "Scan a label" (ai.js + the ai-food Supabase function) ---------- */
     function AI() { return window.TaakatAI || null; }
     function aiCfg() { return window.TAAKAT_CONFIG || null; }
+    function aiErr(e) { var t = AI().pure.errorText(e && e.code); return e && e.code === 'ai' && e.detail ? t + ' (Details for Jas: ' + e.detail + ')' : t; }
     function aiBusyBtn(b, on, label) {
       var t = b.querySelector('.ai-t');
       if (on) { b.dataset.idle = t.textContent; t.textContent = label; } else if (b.dataset.idle) { t.textContent = b.dataset.idle; }
@@ -726,7 +727,7 @@
         renderAd();
         $('ad-out').hidden = false;
       }).catch(function (e) {
-        api.setMsg('ad-msg', AI().pure.errorText(e && e.code));
+        api.setMsg('ad-msg', aiErr(e));
       }).finally(function () { adBusy = false; api.setBusy(b, false); });
     });
     function renderAd() {
@@ -807,7 +808,7 @@
         if (!food) { api.setMsg('af-ai-msg', 'Couldn’t read a nutrition label in that photo. Try again with the label flat, close up and in focus.'); return; }
         openPortion(food, null, null, meal);
       }).catch(function (e) {
-        api.setMsg('af-ai-msg', AI().pure.errorText(e && e.code));
+        api.setMsg('af-ai-msg', aiErr(e));
       }).finally(function () { labelBusy = false; aiBusyBtn(b, false); });
     });
 

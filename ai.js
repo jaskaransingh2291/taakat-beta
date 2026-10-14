@@ -3,7 +3,7 @@
    and every name is plain text (shown with textContent only). */
 (function (root) {
   'use strict';
-  var TIMEOUT_MS = 45000;
+  var TIMEOUT_MS = 55000;   // the function itself gives up after ~40 s
 
   function num(v, max) {
     var n = Number(v);
@@ -89,7 +89,8 @@
         return res.json().catch(function () { return {}; }).then(function (j) {
           if (res.ok) return j;
           var code = j && j.error ? j.error : (res.status === 401 ? 'login' : 'ai');
-          throw Object.assign(new Error(code), { code: code });
+          if (j && j.detail) console.warn('AI detail:', j.detail);
+          throw Object.assign(new Error(code), { code: code, detail: j && j.detail ? String(j.detail).slice(0, 160) : '' });
         });
       }, function (e) {
         throw Object.assign(new Error('network'), { code: e && e.name === 'AbortError' ? 'timeout' : (navigator.onLine ? 'ai' : 'offline') });
