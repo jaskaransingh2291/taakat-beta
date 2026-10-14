@@ -3,7 +3,7 @@
    and every name is plain text (shown with textContent only). */
 (function (root) {
   'use strict';
-  var TIMEOUT_MS = 55000;   // the function itself gives up after ~40 s
+  var TIMEOUT_MS = 60000;   // the function itself gives up after ~50 s
 
   function num(v, max) {
     var n = Number(v);
